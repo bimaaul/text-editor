@@ -17,13 +17,9 @@ const getBlockType = (format: string) => {
 
 const isMarkActive = (editor: CustomEditorType, format: MarkType) => {
   const marks = Editor.marks(editor)
-  return marks ? marks[format] === true : false
+  return marks ? marks[format as keyof typeof marks] === true : false
 }
 
-const isCodeActive = (editor: CustomEditorType) => {
-  const marks = Editor.marks(editor)
-  return marks && marks["code"]
-}
 const toggleMark = (editor: CustomEditorType, format: MarkType) => {
   const isActive = isMarkActive(editor, format)
 
@@ -83,11 +79,4 @@ const toggleBlock = (editor: CustomEditorType, format: ElementType) => {
   }
 }
 
-export {
-  toggleMark,
-  toggleBlock,
-  isMarkActive,
-  isBlockActive,
-  isCodeActive,
-  getBlockType,
-}
+export { toggleMark, toggleBlock, isMarkActive, isBlockActive, getBlockType }

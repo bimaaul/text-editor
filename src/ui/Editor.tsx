@@ -6,7 +6,7 @@ import isHotkey from "is-hotkey"
 import Toolbar from "../uikit/component/Toolbar"
 import MarkButton from "./MarkButton"
 import BlockButton from "./BlockButton"
-import { isCodeActive, toggleMark } from "../shared/utils"
+import { isMarkActive, toggleMark } from "../shared/utils"
 import { HOTKEYS } from "../shared/constant"
 
 import type { Descendant } from "slate"
@@ -36,8 +36,8 @@ const Editor = ({ editor, value, onChange }: EditorProps) => {
         if (isHotkey(hotkey, e)) {
           e.preventDefault()
           const mark = HOTKEYS[hotkey as keyof typeof HOTKEYS]
-          if (mark !== "code" && isCodeActive(editor)) return
-          
+          if (mark !== "code" && isMarkActive(editor, "code")) return
+
           toggleMark(editor, mark)
         }
       }

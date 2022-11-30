@@ -1,7 +1,7 @@
 import { useSlate } from "slate-react"
 
 import Button from "../uikit/component/Button"
-import { isCodeActive, isMarkActive, toggleMark } from "../shared/utils"
+import { isMarkActive, toggleMark } from "../shared/utils"
 
 import type { MarkType } from "../modules/slate/custom-types"
 
@@ -9,7 +9,7 @@ type MarkButtonProps = { format: MarkType; icon: string }
 
 const MarkButton = ({ format, icon }: MarkButtonProps) => {
   const editor = useSlate()
-  const isDisabled = format !== "code" && isCodeActive(editor)
+  const isDisabled = format !== "code" && isMarkActive(editor, "code")
 
   return (
     <Button
